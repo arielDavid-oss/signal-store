@@ -7,7 +7,7 @@ const LIMIT =5;
 export class ProductsService extends BaseHttpService {
 
     getProductos(page: number): Observable<Product[]>{
-        return this.http.get<any[]>(`${this.apiUrl}/products`,{
+        return this.http.get<[]>(`${this.apiUrl}/products`,{
             params: {
                 limit: page * LIMIT,
                  
