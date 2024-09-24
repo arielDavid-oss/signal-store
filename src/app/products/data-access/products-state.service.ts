@@ -7,7 +7,6 @@ import { catchError, map, of, startWith, Subject, switchMap } from "rxjs";
 interface State {
     products: Product[];
     status: 'loading' | 'success' | 'error';
-    page: number;
 }
 
 @Injectable()
@@ -18,13 +17,13 @@ export class ProductsStateService {
     private initialState: State = {
         products: [],
         status: 'loading' as const,
-      page: 1,
+     
     };
 
 changePage$ = new Subject<number>();
 loadproducts$ = this.changePage$.pipe(
     startWith(1),
-    switchMap((page) => this.productsService.getProductos(page)),
+    switchMap(() => this.productsService.getProductos()),
     map(products => ({ products, status: 'success' as const })),
     catchError(() => of({ status: 'error' as const })),
 );

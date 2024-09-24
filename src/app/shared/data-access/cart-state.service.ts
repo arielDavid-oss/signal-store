@@ -62,7 +62,7 @@ state = signalSlice({
        }),
 });
 
-private add(state: Signal<State>, product: ProductItemCart) {
+    private add(state: Signal<State>, product: ProductItemCart) {
    const isInCart = state().products.find(
     (producInCart) => producInCart.product.id === product.product.id,
 ); 
@@ -74,13 +74,11 @@ if(!isInCart) {
         products: [...state().products, {...product, quantity: 1}],
 };
 }
-
         isInCart.quantity += 1;
         return {products: [...state().products],
 };    
          
     }
-
     private remove(state: Signal<State>, id: number) {
         return {
             products: state().products.filter(
