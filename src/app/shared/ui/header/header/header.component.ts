@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CartStateService } from '../../../data-access/cart-state.service';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styles: ``
 })
 export class HeaderComponent {
-
+cartState  = inject(CartStateService).state;
 }
