@@ -7,7 +7,7 @@ import { CartStateService } from '../../../shared/data-access/cart-state.service
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe,RouterLink],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './product-detail.component.html',
   styles: ``,
   providers: [ProductsDetailStateService]
@@ -23,6 +23,7 @@ constructor(){
 this.ProductsDetailStateService.getById(this.id());
   });
 }
+
 addToCart(){
 this.cartState.add({
   product: this.ProductsDetailStateService.product()!,

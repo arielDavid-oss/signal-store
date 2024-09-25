@@ -27,7 +27,7 @@ export default class LoginComponent {
       (response) => {
         
         console.log('accesos correcto:', response);
-
+        localStorage.setItem('isAdmin', 'true');
         // Mostrar la alerta
        // this.showAlert = true;
 
@@ -37,6 +37,7 @@ export default class LoginComponent {
         // }, 3000);
 
         this.router.navigate(['/newproduct'], {
+
           replaceUrl: true,
         });
       },

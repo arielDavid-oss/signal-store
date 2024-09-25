@@ -29,4 +29,10 @@ addToCart(product: Product) {
   }
  );
 }
+
+removeProduct(product: Product) {
+  // Lógica para eliminar el producto de tu estado local
+  this.productsState.state().products = this.productsState.state().products.filter(p => p.id !== product.id);
+}
+
 }
