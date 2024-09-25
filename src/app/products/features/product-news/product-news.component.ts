@@ -14,8 +14,9 @@ import { FormsModule } from '@angular/forms';
 export default class ProductNewsComponent {
 private http = inject(BaseHttpService);
 private router = inject(Router);
+showAlert = false;
 
-userId = signal(0);
+  userId = signal(0);
   productName = signal('');
   productPrice = signal(0);
   productCategory = signal('');
@@ -36,7 +37,17 @@ userId = signal(0);
     // Call the service to add the product
     this.http.createProduct(newProduct).subscribe(
       (response) => {
+        
         console.log('Producto agregado:', response);
+
+        // Mostrar la alerta
+        this.showAlert = true;
+
+        // Ocultar la alerta después de 3 segundos (3000 milisegundos)
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 3000);
+
         this.router.navigate(['/newproduct'], {
           replaceUrl: true,
         });

@@ -11,4 +11,12 @@ import { CartStateService } from '../../../data-access/cart-state.service';
 })
 export class HeaderComponent {
 cartState  = inject(CartStateService).state;
+
+isDropdownOpen = true;
+
+toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
 }
+
+}
+

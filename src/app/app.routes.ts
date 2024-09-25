@@ -16,6 +16,11 @@ export const routes: Routes = [
             import('./products/features/product-news/newproduct.routes'),
     },
     {
+        path: 'admin',
+        loadChildren: () =>
+            import('./Admin/UI/admin.routes'),
+    },
+    {
         path: '**',
         redirectTo: '',
     }

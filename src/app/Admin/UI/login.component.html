@@ -1,0 +1,63 @@
+<div>
+  <form class="max-w-md mx-auto" (ngSubmit)="onAccess()">
+    <!-- Aumentar el tamaño máximo -->
+    <div class="mb-6">
+      <!-- Aumentar el margen inferior -->
+      <label
+        for="email"
+        class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+        >Usuario</label
+      >
+      <!-- Aumentar el tamaño de la fuente -->
+      <input
+        type="username"
+        id="email"
+        name="username"
+        [(ngModel)]="UserName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Usuario123"
+        required
+      />
+      <!-- Aumentar el tamaño del campo -->
+    </div>
+    <div class="mb-6">
+      <label
+        for="password"
+
+        class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+        >Contraseña</label
+      >
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="Password"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required
+      />
+      <!-- Aumentar el tamaño del campo -->
+    </div>
+    <div class="flex items-start mb-6">
+      <div class="flex items-center h-5">
+        <input
+          id="remember"
+          type="checkbox"
+          value=""
+          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+          required
+        />
+      </div>
+      <label
+        for="remember"
+        class="ms-2 text-lg font-medium text-gray-900 dark:text-gray-300"
+        >Recordar</label
+      >
+    </div>
+    <button
+      type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-6 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Verificar
+    </button>
+  </form>
+</div>

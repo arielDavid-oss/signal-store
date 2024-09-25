@@ -8,7 +8,10 @@ export interface Product {
 
 }
 
-
+export interface User{
+    username: string;
+    password: string;
+}
 export interface ProductItemCart {
 
     product: Product;
