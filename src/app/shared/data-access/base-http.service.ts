@@ -20,4 +20,8 @@ export class BaseHttpService{
     deleteproduct(id: number) {
         return this.http.delete(`${this.apiUrl}/products/${id}`);
       }
+
+    updateProduct(product: Product) {
+        return this.http.put(`${this.apiUrl}/productsactu/${product.id}`, product);
+      }
 }

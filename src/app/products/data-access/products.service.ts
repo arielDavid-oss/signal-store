@@ -4,10 +4,11 @@ import { Observable } from "rxjs";
 import { Product } from "../../shared/interfaces/product.interface";
 //const LIMIT =5;
 @Injectable({providedIn: 'root'})
+
 export class ProductsService extends BaseHttpService {
 
     getProductos(): Observable<Product[]>{
-        return this.http.get<[]>(`${this.apiUrl}/products`,
+        return this.http.get<Product[]>(`${this.apiUrl}/products`,
         );
     }
 
