@@ -57,7 +57,7 @@ state = signalSlice({
             if(state().loaded){
                 this._storageService.saveProducts(state().products);
             }
-            console.log(state.products());
+          //  console.log(state.products());
         },
        }),
 });

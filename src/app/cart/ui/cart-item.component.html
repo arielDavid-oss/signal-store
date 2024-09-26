@@ -81,6 +81,7 @@
 
     <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
       <button
+      routerLink="/product/{{productCartItem().product.id}}"
         class="text-base font-medium text-gray-900 hover:underline dark:text-white"
       >
         {{ productCartItem().product.title }}

@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { BaseHttpService } from '../../shared/data-access/base-http.service';
 import { User } from '../../shared/interfaces/product.interface';
 import { FormsModule } from '@angular/forms';
+import { StorageService } from '../../shared/data-access/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,10 @@ import { FormsModule } from '@angular/forms';
 export default class LoginComponent {
   private http = inject(BaseHttpService);
   private router = inject(Router);
+  private storegeService = inject(StorageService);
   UserName = signal('');
   Password = signal('');
-
+isAdmin = false;
 
   onAccess(){
     const access: User = {
@@ -24,26 +26,17 @@ export default class LoginComponent {
       password: this.Password()
     };
     this.http.getaccess(access).subscribe(
-      (response) => {
+      () => {
         
-        console.log('accesos correcto:', response);
+        //console.log('accesos correcto:', response);
         localStorage.setItem('isAdmin', 'true');
-        // Mostrar la alerta
-       // this.showAlert = true;
-
-        // Ocultar la alerta después de 3 segundos (3000 milisegundos)
-        // setTimeout(() => {
-        //   this.showAlert = false;
-        // }, 3000);
-
-        this.router.navigate(['/newproduct'], {
-
+        this.storegeService.loginAsAdmin();
+        this.router.navigate(['/'], {
           replaceUrl: true,
         });
       },
       (error) => {
-        console.error('Error al agregar producto:', error);
-        // Manejar errores si es necesario
+        console.error('Error al acceder:', error);
       }
     );
     }

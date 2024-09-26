@@ -10,7 +10,6 @@
           @for (cartItem of state.products(); track cartItem.product.id) {
           <app-cart-item
             class="block"
-            routerLink="/product/{{cartItem.product.id}}"
             [productCartItem]="cartItem"
             (onRemove)="onRemove($event)"
             (onDecrease)="onDecrease($event)"

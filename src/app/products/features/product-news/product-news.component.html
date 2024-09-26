@@ -8,10 +8,20 @@
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <!-- Modal header -->
               <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                @if (isUpdate) {
+
+
                   <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                      Agregar nuevo producto
-                  </h3>
-              
+                    Actializar producto
+                </h3>
+
+                }@else {
+
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        Agregar nuevo producto
+                    </h3>
+                
+                } 
               </div>
               <!-- Modal body -->
               <form class="p-4 md:p-5" (ngSubmit)="onSubmit()" #productForm="ngForm">

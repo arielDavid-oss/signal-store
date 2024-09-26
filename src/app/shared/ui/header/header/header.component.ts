@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartStateService } from '../../../data-access/cart-state.service';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { StorageService } from '../../../data-access/storage.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -13,12 +14,22 @@ import { NgClass } from '@angular/common';
 export class HeaderComponent implements OnInit {
 cartState  = inject(CartStateService).state;
 private router = inject(Router);
-isAdmin = false;
-isDropdownOpen = true;
-clicks = false
+private storegeService = inject(StorageService);
+
+  isAdmin = false;
+  isDropdownOpen = true;
+  clicks = false;
+  isUpdate=false;
 ngOnInit() {
+
   // Verificar si el usuario es administrador
-  this.isAdmin = localStorage.getItem('isAdmin') === 'true';
+  this.storegeService.isAdmin$.subscribe((isAdmin) => {
+    this.isAdmin = isAdmin;
+    
+  });
+  this.storegeService.isUpdate$.subscribe((isUpdate) => {
+    this.isUpdate = isUpdate;
+  });
 }
 
 click() {
@@ -31,10 +42,27 @@ toggleDropdown() {
 }
 
 logout() {
-  // Aquí puedes manejar la lógica de cerrar sesión
-  localStorage.removeItem('isAdmin'); // o cualquier otro ítem que estés usando para la sesión
-  this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+
+  this.storegeService.logout();
+  this.clicks = false;
+  this.router.navigate(['/cart']);
+}
+
+buttonUpdateProduct(){
+  localStorage.setItem('isUpdate', 'true');
+  this.storegeService.setIsUpdateProduct(true);
+
+  // Redirigir a la página que debe mostrar el formulario de actualización
+  this.router.navigate(['/newproduct']); 
+}
+
+buttonNewProduct(){
+  localStorage.setItem('isUpdate', 'false');  // Actualiza en localStorage
+  this.storegeService.setIsNewProduct();
+  // Cambia el estado a false en el servicio
+  
+  // Redirige a la ruta de nuevo producto
+  this.router.navigate(['/newproduct']); 
 }
 
 }
-

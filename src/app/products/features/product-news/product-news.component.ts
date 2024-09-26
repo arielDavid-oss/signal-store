@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { BaseHttpService } from '../../../shared/data-access/base-http.service';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { StorageService } from '../../../shared/data-access/storage.service';
 
 @Component({
   selector: 'app-product-news',
@@ -11,9 +12,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './product-news.component.html',
   styles: ``
 })
-export default class ProductNewsComponent {
+export default class ProductNewsComponent implements OnInit {
 private http = inject(BaseHttpService);
 private router = inject(Router);
+private storegeService = inject(StorageService);
 showAlert = false;
 
   userId = signal(0);
@@ -22,7 +24,14 @@ showAlert = false;
   productCategory = signal('');
   productDescription = signal('');
   productImage = signal('');
-
+  isUpdate= false;
+  
+  ngOnInit() {
+    this.storegeService.isUpdate$.subscribe((isUpdate) => {
+      this.isUpdate = isUpdate;
+      //console.log('isUpdate:', this.isUpdate);
+    });
+  }
 
   onSubmit() {
     const newProduct: Product = {
