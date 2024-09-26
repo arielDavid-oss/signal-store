@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartStateService } from '../../../data-access/cart-state.service';
 import { Router } from '@angular/router';
@@ -17,7 +17,9 @@ private router = inject(Router);
 private storegeService = inject(StorageService);
 
   isAdmin = false;
-  isDropdownOpen = true;
+  isDropdownOpen = false;
+  closeTimeout: ReturnType<typeof setTimeout> | null = null;
+  @ViewChild('navbarDropdown') navbarDropdown!: ElementRef;
   clicks = false;
   isUpdate=false;
 ngOnInit() {
@@ -37,10 +39,22 @@ click() {
 
 }
 toggleDropdown() {
-  //this.isDropdownOpen = !this.isDropdownOpen;
-  this.isDropdownOpen = true;
+  this.isDropdownOpen = !this.isDropdownOpen;
+  if (this.isDropdownOpen) {
+    this.resetCloseTimeout();
+  }
 }
+resetCloseTimeout() {
+  // Limpia el temporizador anterior si existe
+  if (this.closeTimeout) {
+    clearTimeout(this.closeTimeout);
+  }
 
+  // Establece un nuevo temporizador
+  this.closeTimeout = setTimeout(() => {
+    this.isDropdownOpen = false; // Cierra el menú
+  }, 4000); // Cambia 5000 por el tiempo que desees en milisegundos
+}
 logout() {
 
   this.storegeService.logout();
